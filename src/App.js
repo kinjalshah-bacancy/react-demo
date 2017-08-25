@@ -46,39 +46,57 @@ class Content extends Component{
     super(props);
 
     this.state ={
-      data: [],
-      count: 0,
+      data:0
     };
-    this.updateMyState = this.updateMyState.bind(this);
-    this.updateRandom = this.updateRandom.bind(this);
-    this.findDom = this.findDom.bind(this);
+    this.setNewNumber = this.setNewNumber.bind(this);
   }
-  updateRandom(){
-    this.forceUpdate();
-  }
-  findDom(){
-    var myDiv = Document.getElementById('myDiv');
-    ReactDOM.findDOMNode(myDiv).style.color = 'blue';
-  }
-  updateMyState(){
-    var count = this.state.count;
-    count++;
-    var item = "click -"+count;
-    var my_array = this.state.data;
-    my_array.push(item);
-    this.setState({data: my_array,count: count})
+  setNewNumber(){
+    this.setState({data:this.state.data + 1});
   }
 
   render(){
     return(
       <div className="App-intro">
         <h1>Componet API Start</h1>
-        <button onClick={this.updateMyState}>Click Me</button>
-        <h4>State Data: {this.state.data}</h4>
-        <button onClick={this.updateRandom}>Random No.</button>
-        <h4>Rendom Number: {Math.random()}</h4>
-        <button onClick={this.findDom}>Find Dom.</button>
-        <h4 id="myDiv">this is div</h4>
+        <button onClick={this.setNewNumber}>Update component</button>
+        <NumberComponent mydata={this.state.data}/>
+      </div>
+    );
+  }
+}
+
+class NumberComponent extends Component{
+  componentWillMount(){
+    console.log('THIS IS COMPONENT WILL MOUNT');
+  }
+  componentDidMount(){
+    console.log('THIS IS COMPONENT DID MOUNT');
+
+  }
+  componentWillReceiveProps(newProps){
+    console.log('THIS IS COMPONENT WILL RECEIVE PROPS');
+
+  }
+  shouldComponentUpdate(newProps, newState){
+    console.log('THIS IS COMPONENT SHOULD UPDATE');
+    return true;
+  }
+  componentWillUpdate(newProps, nextState){
+    console.log('THIS IS COMPONENT WILL UPDATE');
+
+  }
+  componentDidUpdate(newProps, nextState){
+    console.log('THIS IS COMPONENT DID UPDATE');
+
+  }
+  componentWillUnmount(){
+    console.log('THIS IS COMPONENT WILL UNMOUNT');
+  }
+  render(){
+    return(
+      <div className="App-intro">
+        <p>NumberComponent</p>
+        <h2>{this.props.mydata}</h2>
       </div>
     );
   }
