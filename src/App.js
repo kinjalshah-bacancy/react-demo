@@ -48,6 +48,8 @@ class Content extends Component{
           <h5>{this.state.myinputvalue}</h5>
           <TextAreComponent />
           <SelectComponent />
+          <hr/>
+          <Reservation />
         </div>
       </div>
     );
@@ -121,6 +123,53 @@ class SelectComponent extends Component{
         </select>
         <h5>{this.state.textvalue}</h5>
         <button type="submit"> Submit </button>
+      </form>
+    );
+  }
+}
+
+
+class Reservation extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      isGoing: true,
+      numberOfGuest: 2
+    }
+    this.handleSumbit = this.handleSumbit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleSumbit(e){
+    alert(this.state.isGoing + " " +this.state.numberOfGuest)
+    e.preventDefault();
+  }
+  handleInputChange(e){
+    const target = e.target;
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    const name = target.name;
+    console.log(name,value);
+    this.setState({
+      [name] : value
+    })
+  }
+
+  render(){
+    return(
+      <form onSubmit={this.handleSumbit}>
+        <label>
+          Are you going
+          <input type="checkbox" checked={this.state.isGoing}
+          onChange={this.handleInputChange} name="isGoing"/>
+        </label>
+        <br/>
+        <label>
+          No Of Guest
+          <input type="number" value={this.state.numberOfGuest}
+          onChange={this.handleInputChange} name="numberOfGuest"/>
+        </label>
+        <input type="submit" value="submit" />
       </form>
     );
   }
