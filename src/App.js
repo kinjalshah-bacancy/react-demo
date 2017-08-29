@@ -46,6 +46,8 @@ class Content extends Component{
           <h1>Forms in react</h1>
           <InputComponent myvalue={this.state.myinputvalue} myinputchange={this.myinputchange}/>
           <h5>{this.state.myinputvalue}</h5>
+          <TextAreComponent />
+          <SelectComponent />
         </div>
       </div>
     );
@@ -62,5 +64,66 @@ class InputComponent extends Component{
   }
 }
 
+class TextAreComponent extends Component{
+  constructor(props){
+    super(props)
+
+    this.state={
+      textvalue: "text are value.."
+    }
+    this.mytextchange = this.mytextchange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  mytextchange(e){
+    this.setState({textvalue: e.target.value})
+  }
+  handleSubmit(e){
+    alert(this.state.textvalue);
+    e.preventDefault();
+  }
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <textarea value ={this.state.textvalue} onChange={this.mytextchange}/>
+        <h5>{this.state.textvalue}</h5>
+        <button type="submit"> Submit </button>
+      </form>
+    );
+  }
+}
+
+
+class SelectComponent extends Component{
+  constructor(props){
+    super(props)
+
+    this.state={
+      textvalue: "apple"
+    }
+    this.mytextchange = this.mytextchange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  mytextchange(e){
+    this.setState({textvalue: e.target.value})
+  }
+  handleSubmit(e){
+    alert(this.state.textvalue);
+    e.preventDefault();
+  }
+  render(){
+    return(
+      <form onSubmit={this.handleSubmit}>
+        <select onChange={this.mytextchange}>
+          <option value="apple">Apple</option>
+          <option value="banana">Banana</option>
+          <option value="Mango">Mango</option>
+          <option value="kiwi">kiwi</option>
+        </select>
+        <h5>{this.state.textvalue}</h5>
+        <button type="submit"> Submit </button>
+      </form>
+    );
+  }
+}
 
 export default App;
