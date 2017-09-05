@@ -19,10 +19,10 @@ class App extends Component {
     return (
       <div className="App">
         <ul>
-          <li><Link to="/home">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contect</Link></li>
-          <li><Link to="/blog">Blog</Link></li>
+          <li><Link activeStyle={{color: 'red'}} to="/home">Home</Link></li>
+          <li><Link activeStyle={{color: 'yellow'}} to="/about">About</Link></li>
+          <li><Link activeStyle={{color: 'blue'}} to="/contact">Contect</Link></li>
+          <li><Link activeStyle={{color: 'orange'}} to="/blog">Blog</Link></li>
         </ul>
         {this.props.children}
       </div>
